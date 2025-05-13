@@ -8,7 +8,9 @@ services:
     environment:
       POSTGRES_DB: forecast_app_db
       POSTGRES_USER: admin
+      PGUSER: admin
       POSTGRES_PASSWORD: weather0512guru!
+    env_file: .env.development.local
     ports:
       - "5432:5432"
   redis:
@@ -22,7 +24,7 @@ services:
       test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
   web:
     build: .
-    command: "bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: "bundle exec rails s -p 3001 -b '0.0.0.0'"
     environment:
       DB_HOST: postgres
       DB_NAME: forecast_app_db
