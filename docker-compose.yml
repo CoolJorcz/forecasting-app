@@ -33,6 +33,6 @@ networks:
     name: myapp_default
 secrets:
   db_password:
-    file: db_password.txt
+    file: ./db_password.txt
   master_key:
-    file: config/master.key
+    file: ./master_key.txt
