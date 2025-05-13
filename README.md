@@ -1,24 +1,7 @@
-# README
+# Forecasting App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## To Set up:
+```RAILS_MASTER_KEY=<master_key_value from config/master.key> docker compose up --build```
 
-Things you may want to cover:
+App is available at http://localhost:3000
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
