@@ -19,6 +19,7 @@ services:
       DB_NAME: forecast_app_db
       DB_USERNAME: my_user
       DB_PASSWORD: /run/secrets/db_password
+      RAILS_MASTER_KEY: /run/secrets/master_key
     volumes:
       - .:/app:cached
     ports:
@@ -33,3 +34,5 @@ networks:
 secrets:
   db_password:
     file: db_password.txt
+  master_key:
+    file: config/master.key
