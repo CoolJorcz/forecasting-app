@@ -32,9 +32,9 @@ class ForecastService
 
   # returns hash
   def self.call(address)
-    address = Address.find_by(primary_line: address.primary_line) || Address.find_by(zip_code: address.zip_code)
+    found_address = Address.find_by(primary_line: address.primary_line) || Address.find_by(zip_code: address.zip_code)
 
-    if address
+    if found_address
       # move on to forecast retrieval
       Rails.cache.fetch([ address.zip_code, :fetch_forecast ], expires_in: 30.minutes) do
         forecast_service = ForecastService.new(address)
@@ -42,6 +42,9 @@ class ForecastService
       end
     else
       # Call Lob's US verification API, create new address, call forecast API
+      address_instance = Address.create(address)
+      forecast_service = ForecastService.new(address_instance)
+      forecast_service.fetch_forecast
     end
   end
 

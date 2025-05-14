@@ -1,2 +1,9 @@
 <h1>Address#index</h1>
-<p>Find me in app/views/addresses/index.html.erb</p>
+<p>Search Forecast for address</p>
+<%= form_with(model: @address, url: { action: :forecast }) do |form| %>
+    <%= form.text_field :primary_line, placeholder: "Street Address" %>
+    <%= form.text_field :city, placeholder: "City" %>
+    <%= form.text_field :state, placeholder: "State" %>
+    <%= form.text_field :zip_code, placeholder: "Zip Code" %>
+    <%= form.submit "Submit" %>
+<% end %>

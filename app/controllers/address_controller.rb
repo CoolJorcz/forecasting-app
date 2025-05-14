@@ -1,5 +1,6 @@
 class AddressController < ApplicationController
   def index
+    @address = Address.new
   end
 
   def show
@@ -8,19 +9,21 @@ class AddressController < ApplicationController
   end
 
   def forecast
-    address = Address.new(address_params)
+    @address = Address.new(address_params)
 
     begin
-      address = ForecastService.call(address)
+      forecast_for_address = ForecastService.call(@address)
 
-      if @address.save
-        redirect_to @address
-      else
-        render "No forecast found!"
-      end
+      @address.current_forecast = forecast_for_address
+      redirect_to current_forecast
     rescue => e
       raise e
     end
+  end
+
+  def current_forecast
+    @forecast_for_address = @address.current_forecast
+    render "forecast"
   end
 
   private

@@ -1,4 +1,5 @@
 class Address < ApplicationRecord
+  attr_accessor :current_forecast
   validates :zip_code, presence: true, format: { with: /\A\d{5}(-\d{4})?\z/,
     message: 'only 5 digit zips or zip+4s allowed (e.g. "100098" or "10098-2345")'
   }

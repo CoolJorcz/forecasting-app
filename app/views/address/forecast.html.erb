@@ -1,0 +1,23 @@
+<h1>Today's Forecast</h1>
+<table border="1">
+  <tr>
+    <th>Attribute</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>Current Temperature</td>
+    <td><%= @forecast_for_address[:current_temperature] %></td>
+  </tr>
+  <tr>
+    <td>Feels Like</td>
+    <td><%= @forecast_for_address[:feels_like] %></td>
+  </tr>
+  <tr>
+    <td>Current Time</td>
+    <td><%= @forecast_for_address[:current_time] %></td>
+  </tr>
+  <tr>
+    <td>Location</td>
+    <td><%= @forecast_for_address[:location][:name] %></td>
+  </tr>
+</table>
