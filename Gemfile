@@ -68,5 +68,5 @@ group :test do
 end
 
 # Integration APIS
-
+gem "httpx"
 gem "lob"
