@@ -1,25 +1,23 @@
-<% if @address.current_forecast%>
-  <h2>Today's Forecast</h1>
-  <table border="1">
-    <tr>
-      <th>Attribute</th>
-      <th>Value</th>
-    </tr>
-    <tr>
-      <td>Current Temperature</td>
-      <td><%= @address.current_forecast[:current_temperature] %></td>
-    </tr>
-    <tr>
-      <td>Feels Like</td>
-      <td><%= @address.current_forecast[:feels_like] %></td>
-    </tr>
-    <tr>
-      <td>Current Time</td>
-      <td><%= @address.current_forecast[:current_time] %></td>
-    </tr>
-    <tr>
-      <td>Location</td>
-      <td><%= @address.current_forecast[:location][:name] %></td>
-    </tr>
-  </table>
-<% end %>
+<h2>Today's Forecast</h1>
+<table border="1">
+  <tr>
+    <th>Attribute</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>Current Temperature</td>
+    <td><%= @address.current_forecast[:current_temperature] %></td>
+  </tr>
+  <tr>
+    <td>Feels Like</td>
+    <td><%= @address.current_forecast[:feels_like] %></td>
+  </tr>
+  <tr>
+    <td>Current Time</td>
+    <td><%= @address.current_forecast[:current_time] %></td>
+  </tr>
+  <tr>
+    <td>Location</td>
+    <td><%= @address.current_forecast[:location][:name] %></td>
+  </tr>
+</table>

@@ -6,7 +6,7 @@
     <%= form.text_field :zip_code, placeholder: "Zip Code" %>
     <%= form.submit "Check Forecast" %>
 <% end %>
- <%= tag.div id: dom_id(@address) %>
-    <%= render partial: "address/forecast" %>
-  <% end %>
-<%= turbo_stream.replace dom_id(@address), partial: "address/forecast" %>
+<%= tag.div id: 'forecast' do %>
+    <%= render partial: "address/forecast" unless @address.current_forecast.nil? %>
+<% end %>
+<%= turbo_stream.update 'forecast', partial: "address/forecast" unless @address.current_forecast.nil? %>

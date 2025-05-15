@@ -20,14 +20,13 @@ class AddressController < ApplicationController
     @address = Address.find_or_create_by(address_params)
     respond_to do |format|
      if @address.save
-        format.turbo_stream { render turbo_stream: turbo_stream.prepend("address", partial: "forecast") }
+        forecast_for_address = ForecastService.call(@address)
+        @address.current_forecast = forecast_for_address
+        format.turbo_stream { render turbo_stream: turbo_stream.update("forecast", partial: "forecast") }
      else
         format.html { render :index, status: :unprocessable_entity }
      end
     end
-  end
-
-  def remote_create
   end
 
   def forecast
