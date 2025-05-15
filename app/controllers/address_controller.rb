@@ -19,11 +19,17 @@ class AddressController < ApplicationController
   def create
     @address = Address.find_by(address_params)
 
-    if @address.id
+    if @address
       forecast_for_address = ForecastService.call(@address)
       @address.current_forecast = forecast_for_address
     else
       # verify address, then call ForecastService
+      verified_address = VerifyAddressService.call(address_params)
+      @address = Address.create(verified_address)
+      if @address.save
+        forecast_for_address = ForecastService.call(@address)
+        @address.current_forecast = forecast_for_address
+      end
     end
 
     respond_to do |format|
@@ -42,6 +48,6 @@ class AddressController < ApplicationController
     # Using a private method to encapsulate the permitted parameters is a good
     # pattern. You can use the same list for both create and update.
     def address_params
-      params.expect(address: [ :state, :primary_line, :zip_code ])
+      params.expect(address: [ :state, :primary_line, :zip_code, :city ])
     end
 end

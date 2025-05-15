@@ -1,4 +1,4 @@
-class TomorrowAPIService
+class TomorrowApiService
   attr_reader :address
 
   def initialize(address)

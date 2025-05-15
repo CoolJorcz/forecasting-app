@@ -1,4 +1,8 @@
-<h2>Today's Forecast</h1>
+<h2>Today's Forecast</h2>
+ 
+<% if !@address.cache_miss %>
+ <span>Cached Result</span>
+<% end %>
 <table border="1">
   <tr>
     <th>Attribute</th>

@@ -4,7 +4,7 @@ class ForecastService
 
   attr_reader :address, :provider
 
-  def initialize(address, provider: TomorrowAPIService)
+  def initialize(address, provider: TomorrowApiService)
     @address = address
     @provider = provider.new(address)
     @current_forecast = {}
@@ -35,8 +35,12 @@ class ForecastService
     if address
       # move on to forecast retrieval
       Rails.cache.fetch([ address.zip_code, :fetch_forecast ], expires_in: 30.minutes) do
+        Rails.logger.info("Cache miss, calling Forecast API")
+        address.cache_miss = true
         forecast_service = ForecastService.new(address)
-        forecast_service.fetch_forecast
+        forecast = forecast_service.fetch_forecast
+        forecast[:set_at] = Time.zone.now
+        forecast
       end
     else
       Rails.error("Address unknown")
