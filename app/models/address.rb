@@ -5,4 +5,6 @@ class Address < ApplicationRecord
   }
   validates :state, presence: true, format: { with: /\A[a-zA-Z]{2}\z/,
     message: "only 2 letter states allowed" }
+  validates :city, presence: true
+  validates :primary_line, presence: true
 end
