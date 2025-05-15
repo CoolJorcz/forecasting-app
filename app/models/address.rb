@@ -7,4 +7,9 @@ class Address < ApplicationRecord
     message: "only 2 letter states allowed" }
   validates :city, presence: true
   validates :primary_line, presence: true
+
+  def call_forecast_service
+    forecast_for_address = ForecastService.call(self)
+    self.current_forecast = forecast_for_address
+  end
 end

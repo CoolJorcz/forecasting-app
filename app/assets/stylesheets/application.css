@@ -8,3 +8,24 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+.address_form {
+    label, input {
+        width:200px;
+        display:block;
+        float:left;        
+        margin-bottom:10px;
+    }
+    label {
+        width:125px;
+        text-align:right;
+        padding-right:10px;
+        margin-top:2px;
+    }
+    br {
+        clear:left;
+    }
+}
+
+.forecast_table {
+    display:block;
+}

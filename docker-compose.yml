@@ -30,7 +30,4 @@ volumes:
   postgres_data: {}
 networks:
   default:
-    name: myapp_default
-secrets:
-  db_password:
-    file: ./db_password.txt
+    name: forecast_app_default

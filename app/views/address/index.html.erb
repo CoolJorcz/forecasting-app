@@ -1,12 +1,21 @@
-<h1>Search Forecast for address</h1>
-<%= form_with(model: @address, url: { action: :create }, id: 'address_form', remote: true) do |form| %>
+<h1>Search Forecast for Address</h1>
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+<%= form_with(model: @address, url: { action: :create }, id: 'address_form', class: 'address_form', remote: true) do |form| %>
+    <%= form.label :primary_line, :primary_line.to_s.humanize %>
     <%= form.text_field :primary_line, placeholder: "Street Address" %>
+    <%= form.label :city, :city.to_s.humanize %>
     <%= form.text_field :city, placeholder: "City" %>
+    <%= form.label :state, :state.to_s.humanize %>
     <%= form.text_field :state, placeholder: "State" %>
+    <%= form.label :zip_code, :zip_code.to_s.humanize %>
     <%= form.text_field :zip_code, placeholder: "Zip Code" %>
     <%= form.submit "Check Forecast" %>
 <% end %>
-<%= tag.div id: 'forecast' do %>
+<%= tag.div id: 'forecast', class: 'forecast-table' do %>
     <%= render partial: "address/forecast" unless @address.current_forecast.nil? %>
 <% end %>
 <%= turbo_stream.update 'forecast', partial: "address/forecast" unless @address.current_forecast.nil? %>
