@@ -17,11 +17,16 @@ class AddressController < ApplicationController
   end
 
   def create
-    @address = Address.find_or_create_by(address_params)
+    @address = Address.find_by(address_params)
+
+    if @address
+      forecast_for_address = ForecastService.call(@address)
+      @address.current_forecast = forecast_for_address
+    else
+      # verify address
+    end
     respond_to do |format|
-     if @address.save
-        forecast_for_address = ForecastService.call(@address)
-        @address.current_forecast = forecast_for_address
+     if @address
         format.turbo_stream { render turbo_stream: turbo_stream.update("forecast", partial: "forecast") }
      else
         format.html { render :index, status: :unprocessable_entity }
@@ -29,16 +34,7 @@ class AddressController < ApplicationController
     end
   end
 
-  def forecast
-    redirect_to @address
-  end
-
-  def show_forecast
-    @address
-  end
-
   private
-
 
     # Using a private method to encapsulate the permitted parameters is a good
     # pattern. You can use the same list for both create and update.
