@@ -23,7 +23,7 @@ class AddressController < ApplicationController
       forecast_for_address = ForecastService.call(@address)
       @address.current_forecast = forecast_for_address
     else
-      # verify address and save
+      # verify address, then call ForecastService
     end
 
     respond_to do |format|
@@ -31,6 +31,7 @@ class AddressController < ApplicationController
         format.turbo_stream { render turbo_stream: turbo_stream.update("forecast", partial: "forecast") }
         format.html { redirect_to(@address) }
      else
+        flash[:alert] = "Address not found"
         format.html { render :index, status: :unprocessable_entity }
      end
     end

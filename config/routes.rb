@@ -13,5 +13,4 @@ Rails.application.routes.draw do
   root "address#index"
 
   resources :address, only: [ :show, :index, :create ]
-  post "address/forecast", to: "address#forecast"
 end
