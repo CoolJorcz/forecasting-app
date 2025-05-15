@@ -6,18 +6,18 @@
   </tr>
   <tr>
     <td>Current Temperature</td>
-    <td><%= @forecast_for_address[:current_temperature] %></td>
+    <td><%= @address.current_forecast[:current_temperature] %></td>
   </tr>
   <tr>
     <td>Feels Like</td>
-    <td><%= @forecast_for_address[:feels_like] %></td>
+    <td><%= @address.current_forecast[:feels_like] %></td>
   </tr>
   <tr>
     <td>Current Time</td>
-    <td><%= @forecast_for_address[:current_time] %></td>
+    <td><%= @address.current_forecast[:current_time] %></td>
   </tr>
   <tr>
     <td>Location</td>
-    <td><%= @forecast_for_address[:location][:name] %></td>
+    <td><%= @address.current_forecast[:location][:name] %></td>
   </tr>
 </table>
