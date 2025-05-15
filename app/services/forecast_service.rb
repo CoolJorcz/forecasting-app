@@ -4,12 +4,23 @@ class ForecastService
 
   attr_reader :address, :provider
 
+  #
+  # <Description>
+  #
+  # @param [<Type>] address <description>
+  # @param [<Type>] provider <description>
+  #
   def initialize(address, provider: TomorrowApiService)
     @address = address
     @provider = provider.new(address)
     @current_forecast = {}
   end
 
+  #
+  # <Description>
+  #
+  # @return [<Type>] <description>
+  #
   def fetch_forecast
     query_params = provider.query_params
     begin
@@ -30,7 +41,13 @@ class ForecastService
   end
 
 
-  # returns hash
+  #
+  # <Description>
+  #
+  # @param [<Type>] address <description>
+  #
+  # @return [Hash] Hash of Address values
+  #
   def self.call(address)
     if address
       # move on to forecast retrieval

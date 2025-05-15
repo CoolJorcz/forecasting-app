@@ -1,13 +1,28 @@
+#
+# <Description>
+#
 class VerifyAddressService
   require "lob"
   attr_reader :raw_address, :verified, :verified_address
 
+  #
+  # <Description>
+  #
+  # @param [<Type>] address <description>
+  #
   def initialize(address)
     @raw_address = address
     @verified = false
     @verified_address = nil
   end
 
+  #
+  # <Description>
+  #
+  # @param [<Type>] address <description>
+  #
+  # @return [<Type>] <description>
+  #
   def verify_address(address)
     config = Lob::Configuration.default
     config.username = api_key
@@ -35,6 +50,13 @@ class VerifyAddressService
     end
   end
 
+  #
+  # <Description>
+  #
+  # @param [<Type>] address <description>
+  #
+  # @return [<Type>] <description>
+  #
   def self.call(address)
     verification_service = VerifyAddressService.new(address)
     @verified_address = verification_service.verify_address(address)

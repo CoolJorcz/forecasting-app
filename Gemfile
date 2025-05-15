@@ -69,6 +69,9 @@ group :test do
   gem "selenium-webdriver"
 end
 
-# Integration APIS
+# Integration APIS / HTTP clients
 gem "httpx"
 gem "lob"
+
+# Documentation
+gem "yard"

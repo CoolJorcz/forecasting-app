@@ -7,8 +7,7 @@ class AddressController < ApplicationController
     id = params.extract_value(:id)
     @address = Address.find(id).first
     if @address
-      forecast_for_address = ForecastService.call(@address)
-      @address.current_forecast = forecast_for_address
+      call_forecast_service
     else
       flash[:alert] = "Address not found"
       redirect_to index
@@ -20,15 +19,13 @@ class AddressController < ApplicationController
     @address = Address.find_by(address_params)
 
     if @address
-      forecast_for_address = ForecastService.call(@address)
-      @address.current_forecast = forecast_for_address
+      call_forecast_service
     else
       # verify address, then call ForecastService
       verified_address = VerifyAddressService.call(address_params)
       @address = Address.create(verified_address)
       if @address.save
-        forecast_for_address = ForecastService.call(@address)
-        @address.current_forecast = forecast_for_address
+        call_forecast_service
       end
     end
 
