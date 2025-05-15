@@ -54,6 +54,7 @@ group :development, :test do
   gem "dotenv"
   gem "factory_bot_rails"
   gem "rails-controller-testing"
+  gem "webmock"
 end
 
 group :development do

@@ -8,7 +8,7 @@ class TomorrowAPIService
   end
 
   def forecast_api
-    "https://api.tomorrow.io/v4/weather/realtime"
+    ENV["TOMORROW_BASE_URL"]
   end
 
   def query_params

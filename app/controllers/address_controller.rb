@@ -19,15 +19,17 @@ class AddressController < ApplicationController
   def create
     @address = Address.find_by(address_params)
 
-    if @address
+    if @address.id
       forecast_for_address = ForecastService.call(@address)
       @address.current_forecast = forecast_for_address
     else
-      # verify address
+      # verify address and save
     end
+
     respond_to do |format|
      if @address
         format.turbo_stream { render turbo_stream: turbo_stream.update("forecast", partial: "forecast") }
+        format.html { redirect_to(@address) }
      else
         format.html { render :index, status: :unprocessable_entity }
      end
