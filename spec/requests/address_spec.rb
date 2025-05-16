@@ -41,7 +41,12 @@ RSpec.describe "Addresses", type: :request do
   describe "POST /address/" do
     it 'retrieves the forecast for an address' do
       post '/address/', params: { address: { primary_line: '20 W 34th St.', state: 'NY', zip_code: '10001', city: 'New York' } }
-      address = Address.find_by(primary_line: '20 W 34th St.', state: 'NY', zip_code: '10001', city: 'New York')
+      address = Address.find_by(
+        primary_line: verified_address[:primary_line],
+        state: verified_address[:state],
+        zip_code: verified_address[:zip_code],
+        city: verified_address[:city]
+      )
       expect(response).to redirect_to(address)
     end
 
@@ -56,7 +61,13 @@ RSpec.describe "Addresses", type: :request do
         address_not_found = Address.find_by(primary_line: '18 W 34th St.', state: 'NY', zip_code: '10001', city: 'New York')
         expect(address_not_found).to eq(nil)
         post '/address/', params: { address: { primary_line: '20 W 34th St.', state: 'NY', zip_code: '10001', city: 'New York' } }
-        address = Address.find_by(primary_line: '20 W 34th St.', state: 'NY', zip_code: '10001', city: 'New York')
+        # address verified with above request object
+        address = Address.find_by(
+          primary_line: verified_address[:primary_line],
+          state: verified_address[:state],
+          zip_code: verified_address[:zip_code],
+          city: verified_address[:city]
+        )
         expect(address).to be_a(Address)
       end
 
@@ -68,13 +79,15 @@ RSpec.describe "Addresses", type: :request do
     end
 
     describe 'turbo streams', pending: 'Limitations in documentation on how to enact turbo stream testing due to formats absence' do
-      it 'renders flash messages on error' do
-        post '/address/', params: { address: { primary_line: '', state: '', zip_code: '', city: '' } }
+      xit 'renders flash messages on error' do
+        headers = { "ACCEPT" => "text/vnd.turbo-stream.html" }
+        post '/address/', params: { address: { primary_line: '', state: '', zip_code: '', city: '' } }, headers: headers
         expect(response).to render_template(partial: '_flash_messages')
       end
 
-      it 'renders forecast on success' do
-        post '/address/', params: { address: { primary_line: '20 W 34th St.', state: 'NY', zip_code: '10001', city: 'New York' } }
+      xit 'renders forecast on success' do
+        headers = { "ACCEPT" => "text/vnd.turbo-stream.html" }
+        post '/address/', params: { address: { primary_line: '20 W 34th St.', state: 'NY', zip_code: '10001', city: 'New York' } }, headers: headers
         expect(response).to render_template(partial: '_forecast')
       end
     end
