@@ -9,9 +9,15 @@ RSpec.describe "Addresses", type: :request do
   end
 
   describe "POST /create" do
-    it 'retrieves the forecast for an address', pending: 'Issues with testing turbostreams due to format seemingly being deprecated' do
+    it 'retrieves the forecast for an address', pending: 'Issues with testing turbostreams due to request format seemingly being deprecated' do
      post '/address/create', params: { address: { primary_line: '20 W 34th St.', state: 'NY', zip_code: '10001' } }
      expect(response).to render_template(partial: '_forecast')
+    end
+
+    it 'errors out if no params are provided' do
+    end
+
+    it 'verifies an address if address does not exist' do
     end
   end
 end

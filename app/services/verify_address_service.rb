@@ -37,6 +37,7 @@ class VerifyAddressService
         state: address.state,
         zip_code: address.zip_code
       )
+
       verified_components = response.components
       {
         primary_line: response.primary_line || verified_components.primary_line,
@@ -45,6 +46,7 @@ class VerifyAddressService
         zip_code: verified_components.zip_code
       }
     rescue => e
+      # TODO: This behavior is incorrect.. will need to figure out what to do with addresses that are not verified or verifiable
       Rails.logger.error("Unable to verify address: #{response.error}")
       address.attributes.compact
     end

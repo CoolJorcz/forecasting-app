@@ -36,8 +36,8 @@ class AddressController < ApplicationController
     if @address.invalid?
       flash[:errors] = @address.errors.messages
       return respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.update("flash_messages", partial: "flash_messages") }
-        format.html { redirect_to address_index_path }
+        format.turbo_stream { render turbo_stream: turbo_stream.update("flash_messages", partial: "flash_messages"), status: :unprocessable_entity }
+        format.html { redirect_to address_index_path, status: :unprocessable_entity }
       end
     end
 
@@ -58,7 +58,7 @@ class AddressController < ApplicationController
         format.html { redirect_to(@address) }
      else
         flash[:alert] = "Address not found"
-        format.html { render "address/index", status: :unprocessable_entity }
+        format.html { render address_index_path, status: :unprocessable_entity }
      end
     end
   end
