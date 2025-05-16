@@ -37,7 +37,7 @@ class AddressController < ApplicationController
       flash[:errors] = @address.errors.messages
       return respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.update("flash_messages", partial: "flash_messages"), status: :unprocessable_entity }
-        format.html { redirect_to address_index_path, status: :unprocessable_entity }
+        format.html { redirect_to address_index_path }
       end
     end
 
