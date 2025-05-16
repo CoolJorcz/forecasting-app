@@ -5,11 +5,10 @@ class ForecastService
   attr_reader :address, :provider
 
   #
-  # <Description>
-  #
-  # @param [<Type>] address <description>
-  # @param [<Type>] provider <description>
-  #
+  # Initialization method for Forecast Service
+  # @param [Address] address instance
+  # @param [ApiService] Api Service provider dependency injected, defaults to TomorrowApiService
+  # @return [ForecastService] Instance of ForecastService
   def initialize(address, provider: TomorrowApiService)
     @address = address
     @provider = provider.new(address)
@@ -17,9 +16,9 @@ class ForecastService
   end
 
   #
-  # <Description>
+  # HTTP Wrapper for Forecast retrieval
   #
-  # @return [<Type>] <description>
+  # @return forecast [Hash] Forecast Hash from response body, plus the address id and the initial primary line provided for visibility
   #
   def fetch_forecast
     query_params = provider.query_params
@@ -42,18 +41,18 @@ class ForecastService
 
 
   #
-  # <Description>
+  # Call method and entrypoint to ForecastService
+  # Will retrieve from cache by zip code if set in previous 30 minutes. Otherwise, will call Forecast API provider.
+  # @param address [Address] instance of Address
   #
-  # @param [<Type>] address <description>
-  #
-  # @return [Hash] Hash of Address values
+  # @return forecast [Hash] Hash of Forecast values
   #
   def self.call(address)
     if address
       # move on to forecast retrieval
       Rails.cache.fetch([ address.zip_code, :fetch_forecast ], expires_in: 30.minutes) do
         Rails.logger.info("Cache miss, calling Forecast API")
-        address.cache_miss = true
+        address.cache_miss = true # determiner for whether a result is cached or not
         forecast_service = ForecastService.new(address)
         forecast = forecast_service.fetch_forecast
         forecast[:set_at] = Time.zone.now

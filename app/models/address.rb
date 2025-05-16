@@ -1,5 +1,6 @@
 class Address < ApplicationRecord
   attr_accessor :current_forecast, :cache_miss
+
   validates :zip_code, presence: true, format: { with: /\A\d{5}(-\d{4})?\z/,
     message: 'only 5 digit zips or zip+4s allowed (e.g. "100098" or "10098-2345")'
   }
@@ -8,6 +9,11 @@ class Address < ApplicationRecord
   validates :city, presence: true
   validates :primary_line, presence: true
 
+  #
+  #
+  # Instance method to receive forecast for a specific address
+  # @return current_forecast[Hash] Hash of forecast values: time of forecast, temperature, location, and when it was fetched
+  #
   def call_forecast_service
     forecast_for_address = ForecastService.call(self)
     self.current_forecast = forecast_for_address

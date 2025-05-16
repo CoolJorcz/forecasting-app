@@ -1,18 +1,19 @@
 class AddressController < ApplicationController
-  #
-  # <Description>
   # GET /index
+  # Main page of Forecasting App. Sends back an Address form and renders the address/index.html.erb template
   # @return ['index' template] New form for Address.new
   #
   def index
     @address = Address.new
   end
 
-  #
-  # <Description>
-  #
-  # @return [<Type>] <description>
-  #
+
+  # GET /address/:id
+  # @param params [ActionController::Parameters] Parameters from request
+  # @param params [String] :id Identifier for Address
+  # Used for html responses to show forecast information after create
+  # @return address/forecast [Template] return partial of address/forecast
+  # @return error [Alert] if address not found, return error
   def show
     id = params.extract_value(:id)
     @address = Address.find(id).first
@@ -25,11 +26,15 @@ class AddressController < ApplicationController
     render template: "address/forecast"
   end
 
-  #
-  # <Description>
-  #
-  # @return [<Type>] <description>
-  #
+  # GET /address/:create
+  # @param address_params [ActionController::Parameters.permitted_params] Permitted Params from request
+  # @param address_params [String] :city City for Address
+  # @param address_params [String] :state City for Address
+  # @param address_params [String] :zip_code City for Address
+  # @param address_params [String] :primary_line City for Address
+  # Create Action for Addresses, address verification prior to create, and forecast creation for a verified address
+  # @return address/forecast [Template] If turbo_stream, return partial of address/forecast. If HTML, redirect to show action
+  # @return error [Alert] if address not found, return error
   def create
     @address = Address.find_or_initialize_by(address_params)
 
