@@ -4,6 +4,8 @@ class ForecastService
 
   attr_reader :address, :provider
 
+  class ExternalApiError < StandardError
+  end
   #
   # Initialization method for Forecast Service
   # @param [Address] address instance
@@ -23,7 +25,7 @@ class ForecastService
   def fetch_forecast(retries: 0)
     query_params = provider.query_params
     begin
-      raise Exception.new("Undefined Provider Url!") if provider.forecast_api.nil?
+      raise ExternalApiError, "Undefined Provider Url!" if provider.forecast_api.nil?
 
       response = HTTPX.get(provider.forecast_api, params: query_params)
       case response
@@ -35,7 +37,7 @@ class ForecastService
         forecast
       in { status: (400..499) }
         Rails.logger.error(response.error)
-        raise response.error
+        raise ExternalApiError, response.error
       in { error: error }
         if retries < 3
           retries += 1
@@ -45,7 +47,7 @@ class ForecastService
         end
       end
     rescue => e
-      raise e
+      raise ExternalApiError, "Unable to fetch Forecast"
     end
   end
 

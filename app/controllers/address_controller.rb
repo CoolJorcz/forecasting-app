@@ -1,4 +1,5 @@
 class AddressController < ApplicationController
+rescue_from ForecastService::ExternalApiError, with: :external_error_handling
   # GET /index
   # Main page of Forecasting App. Sends back an Address form and renders the address/index.html.erb template
   # @return ['index' template] New form for Address.new
@@ -68,6 +69,11 @@ class AddressController < ApplicationController
   end
 
   private
+
+    def external_error_handling
+      flash[:notice] = "We're having difficulty fetching your forecast. Please try again shortly."
+      redirect_to address_index_path, status: :internal_server_error
+    end
 
     # Using a private method to encapsulate the permitted parameters is a good
     # pattern. You can use the same list for both create and update.
