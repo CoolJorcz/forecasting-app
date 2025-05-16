@@ -166,7 +166,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>From response, extraction of various values including current_time: time in which the forecast request was made current_temperature: temperature for current forecast feels_like: what the apparent temperature is location hash: including latitude, longitude and full name description of the area (ex. “Lower Peters Canyon, Irvine, Orange County, California, 92602, United States”).</p>
+<p>From response, extraction of various values including current_time: time in which the forecast request was made current_temperature: temperature for current forecast feels_like: what the apparent temperature is location hash: including latitude, longitude and full name description of the area (ex. “Lower Peters Canyon, Irvine, Orange County, California, 92602, United States”)   }.</p>
 </div></span>
   
 </li>
@@ -386,11 +386,35 @@
     
 <p>From response, extraction of various values including current_time: time in which the forecast request was made current_temperature: temperature for current forecast feels_like: what the apparent temperature is location hash: including latitude, longitude and full name description of the area (ex. “Lower Peters Canyon, Irvine, Orange County, California, 92602, United States”)</p>
 
+<pre class="code ruby"><code class="ruby">}
+</code></pre>
+
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>{</p>
+</div></h5>
+      
+      <pre class="example code"><code>current_temperature: 60.9,
+current_time: &quot;2025-05-14T20:45:00Z&quot;,
+feels_like: 60.9,
+location: {
+  lat: 40.748477935791016,
+  lon: -73.99413299560547,
+  name: &quot;Manhattan, New York County, City of New York, New York, 10001, United States&quot;,
+  zip_code: &quot;10001&quot;
+},
+primary_line: &quot;20 W 34th St.&quot;</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -436,22 +460,22 @@
       <pre class="lines">
 
 
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
 54
-55</pre>
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/tomorrow_api_service.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'app/services/tomorrow_api_service.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extract_current_temperature'>extract_current_temperature</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='rparen'>)</span>
   <span class='lbrace'>{</span>
@@ -598,7 +622,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri May 16 10:43:28 2025 by
+  Generated on Fri May 16 11:45:22 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.5).
 </div>

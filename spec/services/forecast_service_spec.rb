@@ -1,22 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ForecastService do
-  # let(:mock_forecast) do
-  #   {
-  #     current_temperature: 60.9,
-  #     current_time: "2025-05-14T20:45:00Z",
-  #     feels_like: 60.9,
-  #     location: {
-  #       lat: 40.748477935791016,
-  #       lon: -73.99413299560547,
-  #       name: "Manhattan, New York County, City of New York, New York, 10001, United States",
-  #       zip_code: "10001"
-  #     },
-  #     primary_line: "20 W 34th St."
-  #   }
-  # end
-  #
-
   describe 'expected forecast' do
     def valid_time?(string)
       begin

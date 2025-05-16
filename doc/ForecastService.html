@@ -461,11 +461,35 @@
     
 <p>Call method and entrypoint to ForecastService Will retrieve from cache by zip code if set in previous 30 minutes. Otherwise, will call Forecast API provider.</p>
 
+<pre class="code ruby"><code class="ruby">}
+</code></pre>
+
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>{</p>
+</div></h5>
+      
+      <pre class="example code"><code>current_temperature: 60.9,
+current_time: &quot;2025-05-14T20:45:00Z&quot;,
+feels_like: 60.9,
+location: {
+  lat: 40.748477935791016,
+  lon: -73.99413299560547,
+  name: &quot;Manhattan, New York County, City of New York, New York, 10001, United States&quot;,
+  zip_code: &quot;10001&quot;
+},
+primary_line: &quot;20 W 34th St.&quot;</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -511,24 +535,24 @@
       <pre class="lines">
 
 
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
 62
 63
-64</pre>
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/services/forecast_service.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'app/services/forecast_service.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_address'>address</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_address'>address</span>
@@ -650,7 +674,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri May 16 10:43:28 2025 by
+  Generated on Fri May 16 11:45:22 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.5).
 </div>
