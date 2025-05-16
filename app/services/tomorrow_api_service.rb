@@ -14,7 +14,7 @@ class TomorrowApiService
 
   #
   # Tomorrow.io's Real Time Forecast API url
-  # @return url [String] base url for Tomorrow API's RealTime Forecast API
+  # @return [String] url base url for Tomorrow API's RealTime Forecast API
   #
   def forecast_api
     ENV["TOMORROW_BASE_URL"]
@@ -22,7 +22,7 @@ class TomorrowApiService
 
   #
   # Query Params for the RealTime Forecast API. Using zip code for forecast and imperial for units
-  # @return query_params [Hash] query params hash of location, measurement units, and the api_key
+  # @return [Hash] query params hash of location, measurement units, and the api_key
   #
   def query_params
     iso_3166_location_value = "US"

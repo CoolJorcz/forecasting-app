@@ -5,6 +5,7 @@ class VerifyAddressService
   require "lob"
   attr_reader :raw_address, :verified, :verified_address, :config
 
+  # Wrapper around Standard Error for descriptiveness
   class UnknownProviderError < StandardError
   end
   #
@@ -21,7 +22,7 @@ class VerifyAddressService
 
   #
   # Wrapper for Lob's US verification API
-  # @return verified_address [Hash] hash of verified address values
+  # @return [Hash] verified_address hash of verified address values
   def lob_verify_address
     config.username = api_key
     begin
@@ -52,7 +53,7 @@ class VerifyAddressService
   #
   # Router for different address verification providers
   # @return VerifyAddressService#lob_verify_address instance method
-  # @return error [UnknownProviderError] returns error if provider not defined in configuration
+  # @return [UnknownProviderError] returns error if provider not defined in configuration
   def verify_address
     if config.is_a?(Lob::Configuration)
       lob_verify_address
@@ -67,7 +68,7 @@ class VerifyAddressService
   # Why do we need this method? Need a verified zip code in order to retrieve forecast information, and to protect against
   # various issues of user input
   # @param address [Address] instance of Address
-  # @return verified_address [Hash] Hash of Verified Address values
+  # @return [Hash] Hash of Verified Address values
   #
   def self.call(address)
     verification_service = VerifyAddressService.new(address)

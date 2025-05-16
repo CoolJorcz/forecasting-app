@@ -9,11 +9,10 @@ class AddressController < ApplicationController
 
 
   # GET /address/:id
-  # @param params [ActionController::Parameters] Parameters from request
-  # @param params [String] :id Identifier for Address
+  # @param [Hash] params Parameters from request
   # Used for html responses to show forecast information after create
-  # @return address/forecast [Template] return partial of address/forecast
-  # @return error [Alert] if address not found, return error
+  # @return [Template] address/forecast return partial of address/forecast
+  # @return [Alert] error if address not found, return error
   def show
     id = params.extract_value(:id)
     @address = Address.find(id).first
@@ -33,8 +32,8 @@ class AddressController < ApplicationController
   # @param address_params [String] :zip_code City for Address
   # @param address_params [String] :primary_line City for Address
   # Create Action for Addresses, address verification prior to create, and forecast creation for a verified address
-  # @return address/forecast [Template] If turbo_stream, return partial of address/forecast. If HTML, redirect to show action
-  # @return error [Alert] if address not found, return error
+  # @return [Template] address/forecast If turbo_stream, return partial of address/forecast. If HTML, redirect to show action
+  # @return [Alert] error if address not found, return error
   def create
     @address = Address.find_or_initialize_by(address_params)
 

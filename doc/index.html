@@ -65,11 +65,29 @@
 <pre class="code ruby"><code class="ruby">&lt;master_key_value from config/master.key&gt; docker compose up --build
 </code></pre>
 
-<p>App is available at <a href="http://localhost:3000">localhost:3000</a></p>
+<p>App is available at <a href="http://localhost:3001">localhost:3001</a></p>
+
+<h1 id="label-To+Develop+locally-3A">To Develop locally:</h1>
+<ol><li>
+<p>Copy over the .env.sample file</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_cp'>cp</span> <span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_sample'>sample</span> <span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_development'>development</span><span class='period'>.</span><span class='id identifier rubyid_local'>local</span>
+<span class='id identifier rubyid_cp'>cp</span> <span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_sample'>sample</span> <span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_test'>test</span>
+</code></pre>
+</li><li>
+<p>You may run into permission issues with a dockerized postgres. For development and testing dbs only:</p>
+
+<pre class="code ruby"><code class="ruby">docker compose exec postgres /bin/bash
+</code></pre>
+
+<p>Once in shell</p>
+
+<p>“‘ bash-5.1# psql -d forecast_app_test</p>
+</li></ol>
 </div></div>
 
       <div id="footer">
-  Generated on Thu May 15 15:42:08 2025 by
+  Generated on Fri May 16 10:43:28 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.5).
 </div>

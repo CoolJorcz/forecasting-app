@@ -7,7 +7,7 @@ class ForecastService
   #
   # Initialization method for Forecast Service
   # @param [Address] address instance
-  # @param [ApiService] Api Service provider dependency injected, defaults to TomorrowApiService
+  # @param provider [Class] Api Service provider dependency injected, defaults to TomorrowApiService
   # @return [ForecastService] Instance of ForecastService
   def initialize(address, provider: TomorrowApiService)
     @address = address
@@ -18,7 +18,7 @@ class ForecastService
   #
   # HTTP Wrapper for Forecast retrieval
   #
-  # @return forecast [Hash] Forecast Hash from response body, plus the address id and the initial primary line provided for visibility
+  # @return [Hash] forecast Forecast Hash from response body, plus the address id and the initial primary line provided for visibility
   #
   def fetch_forecast
     query_params = provider.query_params
@@ -43,9 +43,9 @@ class ForecastService
   #
   # Call method and entrypoint to ForecastService
   # Will retrieve from cache by zip code if set in previous 30 minutes. Otherwise, will call Forecast API provider.
-  # @param address [Address] instance of Address
+  # @param [Address] address instance of Address
   #
-  # @return forecast [Hash] Hash of Forecast values
+  # @return [Hash] forecast Hash of Forecast values
   #
   def self.call(address)
     if address

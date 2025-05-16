@@ -12,7 +12,7 @@ class Address < ApplicationRecord
   #
   #
   # Instance method to receive forecast for a specific address
-  # @return current_forecast[Hash] Hash of forecast values: time of forecast, temperature, location, and when it was fetched
+  # @return [Hash] current_forecast Hash of forecast values: time of forecast, temperature, location, and when it was fetched
   #
   def call_forecast_service
     forecast_for_address = ForecastService.call(self)
