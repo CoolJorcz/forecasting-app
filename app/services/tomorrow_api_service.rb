@@ -2,9 +2,9 @@ class TomorrowApiService
   attr_reader :address
 
   #
-  # <Description>
+  # Initialization method for the TomorrowApiService
   #
-  # @param [<Type>] address <description>
+  # @param [Address] address an Address instance
   #
   def initialize(address)
     @api_key = tomorrow_api_key
@@ -13,31 +13,32 @@ class TomorrowApiService
   end
 
   #
-  # <Description>
-  #
-  # @return [<Type>] <description>
+  # Tomorrow.io's Real Time Forecast API url
+  # @return url [String] base url for Tomorrow API's RealTime Forecast API
   #
   def forecast_api
     ENV["TOMORROW_BASE_URL"]
   end
 
   #
-  # <Description>
-  #
-  # @return [<Type>] <description>
+  # Query Params for the RealTime Forecast API. Using zip code for forecast and imperial for units
+  # @return query_params [Hash] query params hash of location, measurement units, and the api_key
   #
   def query_params
     iso_3166_location_value = "US"
-    measurement_units = "imperial"
+    measurement_units = "imperial" # metric also an option
     { location: "#{address.zip_code} #{iso_3166_location_value}", units: measurement_units, apikey: tomorrow_api_key }
   end
 
   #
-  # <Description>
+  # From response, extraction of various values including
+  # current_time: time in which the forecast request was made
+  # current_temperature: temperature for current forecast
+  # feels_like: what the apparent temperature is
+  # location hash: including latitude, longitude and full name description of the area (ex. "Lower Peters Canyon, Irvine, Orange County, California, 92602, United States")
+  # @param [Hash] response hash converted from JSON response body
   #
-  # @param [<Type>] response <description>
-  #
-  # @return [<Type>] <description>
+  # @return [Hash] forecast hash of extracted values
   #
   def extract_current_temperature(response)
     {
