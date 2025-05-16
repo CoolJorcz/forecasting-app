@@ -20,7 +20,7 @@ class ForecastService
   #
   # @return [Hash] forecast Forecast Hash from response body, plus the address id and the initial primary line provided for visibility
   #
-  def fetch_forecast
+  def fetch_forecast(retries: 0)
     query_params = provider.query_params
     begin
       response = HTTPX.get(provider.forecast_api, params: query_params)
@@ -35,7 +35,12 @@ class ForecastService
         Rails.logger.error(response.error)
         raise response.error
       in { error: error }
-        # TODO: implement retries
+        if retries < 3
+          retries += 1
+          fetch_forecast(retries)
+        else
+          raise error, "Unable to reach Forecast API"
+        end
       end
     rescue => e
       raise e
