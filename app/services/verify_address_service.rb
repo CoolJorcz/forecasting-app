@@ -39,13 +39,13 @@ class VerifyAddressService
       )
       verified_components = response.components
       {
-        primary_line: verified_components.primary_line,
+        primary_line: response.primary_line || verified_components.primary_line,
         city: verified_components.city,
         state: verified_components.state,
         zip_code: verified_components.zip_code
       }
     rescue => e
-      Rails.logger.error("Unable to verify address, returning address")
+      Rails.logger.error("Unable to verify address: #{response.error}")
       address.attributes.compact
     end
   end
