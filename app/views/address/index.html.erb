@@ -1,6 +1,7 @@
 <h1>Search Forecast for Address</h1>
 <%= render partial: "address/flash_messages" %>
 <%= turbo_stream.update 'flash_messages', partial: "address/flash_messages"%>
+<div class="container">
 <%= form_with(model: @address, url: { action: :create }, id: 'address_form', class: 'address_form', remote: true) do |form| %>
     <%= form.label :primary_line, :primary_line.to_s.humanize %>
     <%= form.text_field :primary_line, placeholder: "Street Address" %>
@@ -12,7 +13,8 @@
     <%= form.text_field :zip_code, placeholder: "Zip Code" %>
     <%= form.submit "Check Forecast" %>
 <% end %>
-<%= tag.div id: 'forecast', class: 'forecast-table' do %>
+</div>
+<%= tag.div id: 'forecast', class: 'forecast-table container' do %>
     <%= render partial: "address/forecast" unless @address.current_forecast.nil? %>
 <% end %>
 <%= turbo_stream.update 'forecast', partial: "address/forecast" unless @address.current_forecast.nil? %>
