@@ -8,7 +8,11 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
-.address_form {
+.flash-msg {
+    color:red
+}
+
+ .address_form {
     label, input {
         width:200px;
         display:block;
@@ -28,4 +32,8 @@
 
 .forecast_table {
     display:block;
+
+    .cache-result {
+        color:goldenrod;
+    }
 }

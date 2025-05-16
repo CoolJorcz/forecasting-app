@@ -1,9 +1,6 @@
 <h1>Search Forecast for Address</h1>
-<% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
-<% end %>
+<%= render partial: "address/flash_messages" %>
+<%= turbo_stream.update 'flash_messages', partial: "address/flash_messages"%>
 <%= form_with(model: @address, url: { action: :create }, id: 'address_form', class: 'address_form', remote: true) do |form| %>
     <%= form.label :primary_line, :primary_line.to_s.humanize %>
     <%= form.text_field :primary_line, placeholder: "Street Address" %>

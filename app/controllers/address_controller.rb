@@ -1,6 +1,4 @@
 class AddressController < ApplicationController
-  before_action :check_params
-  skip_before_action :check_params, only: [ :index ]
   #
   # <Description>
   # GET /index
@@ -33,13 +31,21 @@ class AddressController < ApplicationController
   # @return [<Type>] <description>
   #
   def create
-    @address = Address.find_by(address_params)
+    @address = Address.find_or_initialize_by(address_params)
 
-    if @address
+    if @address.invalid?
+      flash[:errors] = @address.errors.messages
+      return respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.update("flash_messages", partial: "flash_messages") }
+        format.html { redirect_to address_index_path }
+      end
+    end
+
+    if @address.id
       @address.call_forecast_service
     else
       # verify address, then call ForecastService
-      verified_address = VerifyAddressService.call(address_params)
+      verified_address = VerifyAddressService.call(@address)
       @address = Address.create(verified_address)
       if @address.save
         @address.call_forecast_service
@@ -52,18 +58,12 @@ class AddressController < ApplicationController
         format.html { redirect_to(@address) }
      else
         flash[:alert] = "Address not found"
-        format.html { render :index, status: :unprocessable_entity }
+        format.html { render "address/index", status: :unprocessable_entity }
      end
     end
   end
 
   private
-    def check_params
-      if !address_params
-        flash[:error] = "Must provide address fields to check forecast!"
-        redirect_to "/"
-      end
-    end
 
     # Using a private method to encapsulate the permitted parameters is a good
     # pattern. You can use the same list for both create and update.
