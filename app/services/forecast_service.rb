@@ -23,6 +23,8 @@ class ForecastService
   def fetch_forecast(retries: 0)
     query_params = provider.query_params
     begin
+      raise Exception.new("Undefined Provider Url!") if provider.forecast_api.nil?
+
       response = HTTPX.get(provider.forecast_api, params: query_params)
       case response
       in { status: (200..299) }
