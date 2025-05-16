@@ -35,7 +35,7 @@ services:
     volumes:
       - .:/app:cached
     ports:
-      - "3000:3000"
+      - "3001:3001"
     depends_on:
       - postgres
       - redis
@@ -44,7 +44,4 @@ volumes:
   redis_data: {}
 networks:
   default:
-    name: myapp_default
-secrets:
-  db_password:
-    file: ./db_password.txt
+    name: forecast_app_default

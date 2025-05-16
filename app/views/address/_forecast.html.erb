@@ -1,0 +1,24 @@
+<br>
+<h3>Today's Forecast</h3>
+ 
+<% if !@address.cache_miss %>
+ <span class="cache-result">Cached Result</span>
+<% end %>
+<table class="table table-bordered">
+  <tr>
+    <td>Current Temperature</td>
+    <td><%= @address.current_forecast[:current_temperature] %></td>
+  </tr>
+  <tr>
+    <td>Feels Like</td>
+    <td><%= @address.current_forecast[:feels_like] %></td>
+  </tr>
+  <tr>
+    <td>Forecast Time</td>
+    <td><%= @address.current_forecast[:current_time] %></td>
+  </tr>
+  <tr>
+    <td>Location</td>
+    <td><%= @address.current_forecast[:location][:name] %></td>
+  </tr>
+</table>

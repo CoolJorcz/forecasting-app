@@ -1,0 +1,35 @@
+{
+    "data": {
+      "time": "2025-05-15T17:43:00Z",
+      "values": {
+        "cloudBase": 0.1,
+        "cloudCeiling": 0.1,
+        "cloudCover": 98,
+        "dewPoint": 63.1,
+        "freezingRainIntensity": 0,
+        "humidity": 85,
+        "precipitationProbability": 0,
+        "pressureSeaLevel": 29.89,
+        "pressureSurfaceLevel": 29.83,
+        "rainIntensity": 0,
+        "sleetIntensity": 0,
+        "snowIntensity": 0,
+        "temperature": 67.7,
+        "temperatureApparent": 67.7,
+        "uvHealthConcern": 1,
+        "uvIndex": 4,
+        "visibility": 5.94,
+        "weatherCode": 1001,
+        "windDirection": 33,
+        "windGust": 6.2,
+        "windSpeed": 5
+      }
+    },
+    "location": {
+      "lat": 40.748477935791016,
+      "lon": -73.99413299560547,
+      "name": "Manhattan, New York County, City of New York, New York, 10001, United States",
+      "type": "postcode"
+    }
+  }
+  

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: ForecastService
+  
+    &mdash; Documentation by YARD 0.9.37
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "ForecastService";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (F)</a> &raquo;
+    
+    
+    <span class="title">ForecastService</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: ForecastService
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ForecastService</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>app/services/forecast_service.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#address-instance_method" title="#address (instance method)">#<strong>address</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute address.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#provider-instance_method" title="#provider (instance method)">#<strong>provider</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute provider.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#call-class_method" title="call (class method)">.<strong>call</strong>(address)  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Call method and entrypoint to ForecastService Will retrieve from cache by zip code if set in previous 30 minutes.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fetch_forecast-instance_method" title="#fetch_forecast (instance method)">#<strong>fetch_forecast</strong>  &#x21d2; Hash </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>HTTP Wrapper for Forecast retrieval.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(address, provider: TomorrowApiService)  &#x21d2; ForecastService </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Initialization method for Forecast Service.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(address, provider: TomorrowApiService)  &#x21d2; <tt><span class='object_link'><a href="" title="ForecastService (class)">ForecastService</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Initialization method for Forecast Service</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>address</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Address.html" title="Address (class)">Address</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>instance</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>provider</span>
+      
+      
+        <span class='type'>(<tt>Class</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>TomorrowApiService</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Api Service provider dependency injected, defaults to TomorrowApiService</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/services/forecast_service.rb', line 12</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_address'>address</span><span class='comma'>,</span> <span class='label'>provider:</span> <span class='const'><span class='object_link'><a href="TomorrowApiService.html" title="TomorrowApiService (class)">TomorrowApiService</a></span></span><span class='rparen'>)</span>
+  <span class='ivar'>@address</span> <span class='op'>=</span> <span class='id identifier rubyid_address'>address</span>
+  <span class='ivar'>@provider</span> <span class='op'>=</span> <span class='id identifier rubyid_provider'>provider</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_address'>address</span><span class='rparen'>)</span>
+  <span class='ivar'>@current_forecast</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="address-instance_method">
+  
+    #<strong>address</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute address.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+5
+6
+7</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/services/forecast_service.rb', line 5</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_address'>address</span>
+  <span class='ivar'>@address</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="provider-instance_method">
+  
+    #<strong>provider</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute provider.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+5
+6
+7</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/services/forecast_service.rb', line 5</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_provider'>provider</span>
+  <span class='ivar'>@provider</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="call-class_method">
+  
+    .<strong>call</strong>(address)  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Call method and entrypoint to ForecastService Will retrieve from cache by zip code if set in previous 30 minutes. Otherwise, will call Forecast API provider.</p>
+
+<pre class="code ruby"><code class="ruby">}
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'>
+<p>{</p>
+</div></h5>
+      
+      <pre class="example code"><code>current_temperature: 60.9,
+current_time: &quot;2025-05-14T20:45:00Z&quot;,
+feels_like: 60.9,
+location: {
+  lat: 40.748477935791016,
+  lon: -73.99413299560547,
+  name: &quot;Manhattan, New York County, City of New York, New York, 10001, United States&quot;,
+  zip_code: &quot;10001&quot;
+},
+primary_line: &quot;20 W 34th St.&quot;</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>address</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Address.html" title="Address (class)">Address</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>instance of Address</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>forecast Hash of Forecast values</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/services/forecast_service.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_address'>address</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_address'>address</span>
+    <span class='comment'># move on to forecast retrieval
+</span>    <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='lbracket'>[</span> <span class='id identifier rubyid_address'>address</span><span class='period'>.</span><span class='id identifier rubyid_zip_code'>zip_code</span><span class='comma'>,</span> <span class='symbol'>:fetch_forecast</span> <span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>expires_in:</span> <span class='int'>30</span><span class='period'>.</span><span class='id identifier rubyid_minutes'>minutes</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cache miss, calling Forecast API</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_address'>address</span><span class='period'>.</span><span class='id identifier rubyid_cache_miss'>cache_miss</span> <span class='op'>=</span> <span class='kw'>true</span> <span class='comment'># determiner for whether a result is cached or not
+</span>      <span class='id identifier rubyid_forecast_service'>forecast_service</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="ForecastService (class)">ForecastService</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="ForecastService#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_address'>address</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_forecast'>forecast</span> <span class='op'>=</span> <span class='id identifier rubyid_forecast_service'>forecast_service</span><span class='period'>.</span><span class='id identifier rubyid_fetch_forecast'>fetch_forecast</span>
+      <span class='id identifier rubyid_forecast'>forecast</span><span class='lbracket'>[</span><span class='symbol'>:set_at</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_zone'>zone</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
+      <span class='id identifier rubyid_forecast'>forecast</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Address unknown</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="fetch_forecast-instance_method">
+  
+    #<strong>fetch_forecast</strong>  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>HTTP Wrapper for Forecast retrieval</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>forecast Forecast Hash from response body, plus the address id and the initial primary line provided for visibility</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/services/forecast_service.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fetch_forecast'>fetch_forecast</span>
+  <span class='id identifier rubyid_query_params'>query_params</span> <span class='op'>=</span> <span class='id identifier rubyid_provider'>provider</span><span class='period'>.</span><span class='id identifier rubyid_query_params'>query_params</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTPX</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span><span class='period'>.</span><span class='id identifier rubyid_forecast_api'>forecast_api</span><span class='comma'>,</span> <span class='label'>params:</span> <span class='id identifier rubyid_query_params'>query_params</span><span class='rparen'>)</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span> <span class='op'>==</span> <span class='int'>200</span>
+      <span class='id identifier rubyid_tomorrow_forecast'>tomorrow_forecast</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_forecast'>forecast</span> <span class='op'>=</span> <span class='id identifier rubyid_provider'>provider</span><span class='period'>.</span><span class='id identifier rubyid_extract_current_temperature'>extract_current_temperature</span><span class='lparen'>(</span><span class='id identifier rubyid_tomorrow_forecast'>tomorrow_forecast</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_forecast'>forecast</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_address'>address</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+      <span class='id identifier rubyid_forecast'>forecast</span><span class='lbracket'>[</span><span class='symbol'>:primary_line</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_address'>address</span><span class='period'>.</span><span class='id identifier rubyid_primary_line'>primary_line</span>
+      <span class='id identifier rubyid_forecast'>forecast</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri May 16 11:45:22 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.3.5).
+</div>
+
+    </div>
+  </body>
+</html>

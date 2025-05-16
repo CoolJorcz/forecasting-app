@@ -1,2 +1,28 @@
-<h1>Address#index</h1>
-<p>Find me in app/views/addresses/index.html.erb</p>
+<h1>Search Forecast for Address</h1>
+<%= render partial: "address/flash_messages" %>
+<%= turbo_stream.update 'flash_messages', partial: "address/flash_messages"%>
+<div class="container">
+<%= form_with(model: @address, url: { action: :create }, id: 'address_form', class: "form-inline", remote: true) do |form| %>
+    <div class="form-group field">
+        <%= form.label :primary_line, :primary_line.to_s.humanize %>
+        <%= form.text_field :primary_line, placeholder: "Street Address" %>
+    </div>
+    <div class="form-group field">
+        <%= form.label :city, :city.to_s.humanize %>
+        <%= form.text_field :city, placeholder: "City" %>
+    </div>
+    <div class="form-group field">
+        <%= form.label :state, :state.to_s.humanize %>
+    <%= form.text_field :state, placeholder: "State" %>
+    </div>
+    <div class="form-group field">
+        <%= form.label :zip_code, :zip_code.to_s.humanize %>
+        <%= form.text_field :zip_code, placeholder: "Zip Code" %>
+    </div>
+    <%= form.submit "Check Forecast", class: "btn btn-primary"%>
+<% end %>
+</div>
+<%= tag.div id: 'forecast', class: 'forecast-table container' do %>
+    <%= render partial: "address/forecast" unless @address.current_forecast.nil? %>
+<% end %>
+<%= turbo_stream.update 'forecast', partial: "address/forecast" unless @address.current_forecast.nil? %>

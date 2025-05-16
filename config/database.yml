@@ -86,7 +86,7 @@ production:
   primary: &primary_production
     <<: *default
     database: forecasting_app
-    username: app
+    username: forecasting_app
     password: <%= ENV["APP_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production

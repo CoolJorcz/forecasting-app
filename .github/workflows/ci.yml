@@ -89,8 +89,9 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
+          TOMORROW_BASE_URL: https://api.tomorrow.io/v4/weather/realtime
           # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test test:system
+        run: bin/rails db:test:prepare spec
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
