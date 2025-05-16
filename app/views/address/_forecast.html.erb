@@ -4,7 +4,7 @@
 <% if !@address.cache_miss %>
  <span class="cache-result">Cached Result</span>
 <% end %>
-<table border="1">
+<table class="table table-bordered">
   <tr>
     <td>Current Temperature</td>
     <td><%= @address.current_forecast[:current_temperature] %></td>
