@@ -24,15 +24,18 @@ class ForecastService
     query_params = provider.query_params
     begin
       response = HTTPX.get(provider.forecast_api, params: query_params)
-
-      if response.status == 200
+      case response
+      in { status: (200..299) }
         tomorrow_forecast = JSON.parse(response.body)
         forecast = provider.extract_current_temperature(tomorrow_forecast)
         forecast[:id] = address.id
         forecast[:primary_line] = address.primary_line
         forecast
-      else
-        raise response.body.to_s
+      in { status: (400..499) }
+        Rails.logger.error(response.error)
+        raise response.error
+      in { error: error }
+        # TODO: implement retries
       end
     rescue => e
       raise e
