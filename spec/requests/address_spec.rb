@@ -59,9 +59,13 @@ RSpec.describe "Addresses", type: :request do
         address = Address.find_by(primary_line: '20 W 34th St.', state: 'NY', zip_code: '10001', city: 'New York')
         expect(address).to be_a(Address)
       end
+
+      it 'renders "cached result" if it is available', pending: 'Testing Turbo Streams tbd' do
+        post '/address/', params: { address: { primary_line: '20 W 34th St.', state: 'NY', zip_code: '10001', city: 'New York' } }
+        expect(response).to render_template(partial: '_forecast')
+        expect(response.body).to include("<span>Cached Result</span>")
+      end
     end
-
-
 
     describe 'turbo streams', pending: 'Limitations in documentation on how to enact turbo stream testing due to formats absence' do
       it 'renders flash messages on error' do

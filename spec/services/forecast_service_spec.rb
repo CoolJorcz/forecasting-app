@@ -44,7 +44,7 @@ RSpec.describe ForecastService do
       @forecast = ForecastService.call(address_to_process)
     end
 
-    it 'gets the temperature for an addres' do
+    it 'gets the temperature for an address' do
       expect(@forecast[:current_temperature]).to be_a(Float)
     end
 
@@ -60,10 +60,10 @@ RSpec.describe ForecastService do
       expect(@forecast.dig(:location, :name)).to be_a(String)
     end
 
-    it 'retrieves the forecast from a cache if it has been recently retrieved' do
+    xit 'retrieves the forecast from a cache if it has been recently retrieved' do
     end
 
-    it 'calls the tomorrow.io forecast API if no forecast exists' do
+    xit 'calls the tomorrow.io forecast API if no forecast exists' do
     end
   end
 end
