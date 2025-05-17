@@ -76,8 +76,7 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
-  cache_servers = %w[redis://cache-01:6379/0 redis://cache-02:6379/0]
-  config.cache_store = :redis_cache_store, { url: cache_servers }
+  config.cache_store = :redis_cache_store, { url: ENV["REDIS_URL"] }
 
   # Disabled for local use
   config.action_controller.forgery_protection_origin_check = false

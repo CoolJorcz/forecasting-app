@@ -30,7 +30,7 @@ services:
       DB_NAME: forecast_app_db
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
-      REDIS_URL: redis
+      REDIS_URL: ${REDIS_URL}
       RAILS_MASTER_KEY:
       TOMORROW_API_KEY: ${TOMORROW_API_KEY}
       TOMORROW_BASE_URL: ${TOMORROW_BASE_URL}
