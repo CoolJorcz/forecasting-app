@@ -1,3 +1,4 @@
+<% content_for :title, "Forecast App" %>
 <h1>Search Forecast for Address</h1>
 <%= render partial: "address/flash_messages" %>
 <%= turbo_stream.update 'flash_messages', partial: "address/flash_messages"%>
