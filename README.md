@@ -11,19 +11,20 @@ See the current forecast for your location
 ## To Set up:
 1. Copy over the .env.sample file (Flashpaper for api keys provided in email / contact andrew.jorczak@gmail.com if expired)
 ```
-cp .env.sample .env.development.local
-cp .env.sample .env.test
+cp env.sample .env.development.local
+cp env.sample .env.test
+cp env.sample .env
 ```
 2. Run the app
 ```RAILS_MASTER_KEY=<master_key_value from config/master.key> docker compose --env-file ./.env.development.local up --build```
 App is available at http://localhost:3001
-### NOTE: App needs to have proper http to https CSRF concerns resolved before the dockerized app is available for use. A workaround is to set  `config.action_controller.forgery_protection_origin_check = false` in the environment config. For the purposes of this exercise, I configured as such but I'd be hesitant to actually do this in production without further research. As of this writing, Rails cache is not properly functioning in the production environment but is on development. Further investigation on my end will occur.
+### NOTE: App needs to have proper http to https CSRF concerns resolved. A workaround is to set  `config.action_controller.forgery_protection_origin_check = false` in the environment config. For the purposes of this exercise, I configured as such but I'd be hesitant to actually do this in production without further research.
 
 ## To Develop and run locally:
 1. Copy over the .env.sample file (Flashpaper for api keys provided in email / contact andrew.jorczak@gmail.com if expired)
 ```
-cp .env.sample .env.development.local
-cp .env.sample .env.test
+cp env.sample .env.development.local
+cp env.sample .env.test
 ```
 2. You may run into permission issues with a dockerized postgres. For development and testing dbs only:
 ```
