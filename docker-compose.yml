@@ -32,6 +32,10 @@ services:
       DB_PASSWORD: weather0512guru!
       REDIS_URL: redis
       RAILS_MASTER_KEY:
+      TOMORROW_API_KEY: ${TOMORROW_API_KEY}
+      TOMORROW_BASE_URL: ${TOMORROW_BASE_URL}
+      LOB_API_KEY: ${LOB_API_KEY}
+      LOB_API_SECRET: ${LOB_API_SECRET}
     volumes:
       - .:/app:cached
     ports:
