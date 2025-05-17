@@ -47,7 +47,7 @@ $ bundle exec rails db:test:prepare
 ```
 4. Launch server: `bundle exec rails s`
 5. Run tests: `bundle exec rspec spec`
-
+6. YARD docs: `yard server`
 
 ## Development Thoughts
 
