@@ -1,13 +1,9 @@
-<% flash.each do |type, msg| %>
-    <div id="flash_messages" class="container">
-        <p class=<%= type %>><%= msg %></p>
+<% flash.each do |type, msgs| %>
+    <div class="container">
+        <% msgs.each do |msg| %>
+            <p class="alert alert-danger <%= type %>"><%= msg %></p>
+        <% end %>
     </div>
 <% end %>
-<%= turbo_stream.replace "flash_messages" do %>
-    <% flash.each do |type, msg| %>
-        <div id="flash_messages">
-            <p class=<%= type %>><%= msg %></p>
-        </div>
-    <% end %>
-<% end %>
+
   
