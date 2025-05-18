@@ -1,6 +1,8 @@
 <% content_for :title, "Forecast App" %>
 <h1>Search Forecast for Address</h1>
-<%= render partial: "address/flash_messages" %>
+<turbo-frame id="flash" class="flash_messages container">
+    <%= render partial: "address/flash_messages" %>
+</turbo-frame>
 <%= turbo_stream.update 'flash_messages', partial: "address/flash_messages"%>
 <div class="container">
 <%= form_with(model: @address, url: { action: :create }, id: 'address_form', class: "form-inline", remote: true) do |form| %>

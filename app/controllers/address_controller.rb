@@ -39,9 +39,9 @@ rescue_from ForecastService::ExternalApiError, with: :external_error_handling
     @address = Address.find_or_initialize_by(address_params)
 
     if @address.invalid?
-      flash[:errors] = @address.errors.messages
+      flash.now[:errors] = @address.errors.full_messages
       return respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.update("flash_messages", partial: "flash_messages"), status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.update("flash", partial: "flash_messages"), status: :unprocessable_entity }
         format.html { redirect_to address_index_path }
       end
     end
