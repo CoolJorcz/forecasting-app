@@ -14,7 +14,6 @@ RSpec.describe ForecastService do
     def mock_forecast
       File.read('./spec/mocks/tomorrow_api_response.json')
     end
-    # // 'https://api.tomorrow.io/v4/weather/realtime?location=10001%20US&units=imperial&apikey=CeMSaky78SbOJ2b3XjtpQw9pjMAFuLq6'
     def stub_api_request
       stub_request(:get, 'https://api.tomorrow.io/v4/weather/realtime').with(query: hash_including({
         'location' => '10001 US',
