@@ -21,8 +21,12 @@ RSpec.describe ForecastService do
       })).to_return(status: 200, body: mock_forecast, headers: {})
     end
 
+    def address_to_process
+      address_to_process ||= create(:address)
+    end
+
     before(:all) do
-      address_to_process = create(:address)
+      Rails.cache.clear
       stub_api_request
       @forecast = ForecastService.call(address_to_process)
     end
@@ -43,10 +47,22 @@ RSpec.describe ForecastService do
       expect(@forecast.dig(:location, :name)).to be_a(String)
     end
 
-    xit 'retrieves the forecast from a cache if it has been recently retrieved' do
-    end
+    describe 'cache' do
+      before do
+        allow(Rails).to receive(:cache).and_return(ActiveSupport::Cache::MemoryStore.new)
+        stub_api_request
+        @forecast = ForecastService.call(address_to_process)
+        @cached_forecast = Rails.cache.read([ address_to_process.zip_code, :fetch_forecast ])
+      end
 
-    xit 'calls the tomorrow.io forecast API if no forecast exists' do
+      it 'writes to Rails.cache for forecast information' do
+        expect(@cached_forecast[:current_time]).to eq(@forecast[:current_time])
+      end
+
+      it 'retrieves the forecast from a cache if it has been recently retrieved' do
+        new_forecast = ForecastService.call(address_to_process)
+        expect(new_forecast[:current_time]).to eq(@cached_forecast[:current_time])
+      end
     end
   end
 end
