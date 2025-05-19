@@ -17,6 +17,7 @@
 require 'factory_bot_rails'
 require 'webmock/rspec'
 require 'database_cleaner/active_record'
+require 'active_support/testing/time_helpers'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -50,6 +51,8 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.include FactoryBot::Syntax::Methods
+
+  config.include ActiveSupport::Testing::TimeHelpers
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.

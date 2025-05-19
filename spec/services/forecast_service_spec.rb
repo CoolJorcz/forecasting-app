@@ -63,6 +63,12 @@ RSpec.describe ForecastService do
         new_forecast = ForecastService.call(address_to_process)
         expect(new_forecast[:current_time]).to eq(@cached_forecast[:current_time])
       end
+
+      it 'expires cached response after 30 minutes' do
+        travel_to 30.minutes.from_now
+        expect(@cached_forecast).to be_nil
+        travel_back
+      end
     end
   end
 end
