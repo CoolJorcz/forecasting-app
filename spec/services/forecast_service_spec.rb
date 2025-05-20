@@ -26,9 +26,12 @@ RSpec.describe ForecastService do
     end
 
     before(:all) do
-      Rails.cache.clear
       stub_api_request
       @forecast = ForecastService.call(address_to_process)
+    end
+
+    after(:all) do
+      Rails.cache.clear
     end
 
     it 'gets the temperature for an address' do
@@ -47,27 +50,40 @@ RSpec.describe ForecastService do
       expect(@forecast.dig(:location, :name)).to be_a(String)
     end
 
-    describe 'cache' do
+    describe 'cache', type: :integration do
+      let(:cached_forecast) { Rails.cache.read([ address_to_process.zip_code, :fetch_forecast ]) }
       before do
-        allow(Rails).to receive(:cache).and_return(ActiveSupport::Cache::MemoryStore.new)
+        allow(Rails).to receive(:cache).and_return(ActiveSupport::Cache::RedisCacheStore.new(url: ENV['REDIS_URL']))
         stub_api_request
-        @forecast = ForecastService.call(address_to_process)
-        @cached_forecast = Rails.cache.read([ address_to_process.zip_code, :fetch_forecast ])
       end
 
       it 'writes to Rails.cache for forecast information' do
-        expect(@cached_forecast[:current_time]).to eq(@forecast[:current_time])
+        expect(cached_forecast[:current_time]).to eq(@forecast[:current_time])
       end
 
       it 'retrieves the forecast from a cache if it has been recently retrieved' do
         new_forecast = ForecastService.call(address_to_process)
-        expect(new_forecast[:current_time]).to eq(@cached_forecast[:current_time])
+        expect(new_forecast[:set_at]).to eq(cached_forecast[:set_at])
       end
 
-      it 'expires cached response after 30 minutes' do
-        travel_to 30.minutes.from_now
-        expect(@cached_forecast).to be_nil
-        travel_back
+      context 'expired cache' do
+        let(:former_forecast) { ForecastService.call(address_to_process) }
+        before do
+          Rails.cache.clear
+          travel_to 32.minutes.from_now
+        end
+
+        after do
+          travel_back
+        end
+
+        it 'expires cached response after 30 minutes and fetches new' do
+          former_forecast = @forecast.clone
+          new_forecast = ForecastService.call(address_to_process)
+          cached_forecast_time = former_forecast.dig(:set_at)
+          new_forecast_time = new_forecast[:set_at]
+          expect(new_forecast_time > cached_forecast_time).to eq(true)
+        end
       end
     end
   end

@@ -74,7 +74,7 @@ class ForecastService
   def self.call(address)
     if address
       # move on to forecast retrieval
-      Rails.cache.fetch([ address.zip_code, :fetch_forecast ], expires_in: 30.minutes) do
+      Rails.cache.fetch([ address.zip_code, :fetch_forecast ], expires_in: (30.minutes.from_now - Time.current).round.seconds, race_condition_ttl: 10.seconds) do
         Rails.logger.info("Cache miss, calling Forecast API")
         address.cache_miss = true # determiner for whether a result is cached or not
         forecast_service = ForecastService.new(address)
