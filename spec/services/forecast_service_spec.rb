@@ -67,9 +67,9 @@ RSpec.describe ForecastService do
       end
 
       context 'expired cache' do
-        let(:former_forecast) { ForecastService.call(address_to_process) }
         before do
           Rails.cache.clear
+          @former_forecast = ForecastService.call(address_to_process)
           travel_to 32.minutes.from_now
         end
 
@@ -78,9 +78,8 @@ RSpec.describe ForecastService do
         end
 
         it 'expires cached response after 30 minutes and fetches new' do
-          former_forecast = @forecast.clone
           new_forecast = ForecastService.call(address_to_process)
-          cached_forecast_time = former_forecast.dig(:set_at)
+          cached_forecast_time = @former_forecast.dig(:set_at)
           new_forecast_time = new_forecast[:set_at]
           expect(new_forecast_time > cached_forecast_time).to eq(true)
         end
