@@ -348,7 +348,6 @@
       <pre class="lines">
 
 
-37
 38
 39
 40
@@ -379,18 +378,19 @@
 65
 66
 67
-68</pre>
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/address_controller.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/address_controller.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
   <span class='ivar'>@address</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Address.html" title="Address (class)">Address</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find_or_initialize_by'>find_or_initialize_by</span><span class='lparen'>(</span><span class='id identifier rubyid_address_params'>address_params</span><span class='rparen'>)</span>
 
   <span class='kw'>if</span> <span class='ivar'>@address</span><span class='period'>.</span><span class='id identifier rubyid_invalid?'>invalid?</span>
-    <span class='id identifier rubyid_flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:errors</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@address</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='period'>.</span><span class='id identifier rubyid_messages'>messages</span>
+    <span class='id identifier rubyid_flash'>flash</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='lbracket'>[</span><span class='symbol'>:errors</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@address</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='period'>.</span><span class='id identifier rubyid_full_messages'>full_messages</span>
     <span class='kw'>return</span> <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
-      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_turbo_stream'>turbo_stream</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='label'>turbo_stream:</span> <span class='id identifier rubyid_turbo_stream'>turbo_stream</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>flash_messages</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>partial:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>flash_messages</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:unprocessable_entity</span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_turbo_stream'>turbo_stream</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='label'>turbo_stream:</span> <span class='id identifier rubyid_turbo_stream'>turbo_stream</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>flash</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>partial:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>flash_messages</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:unprocessable_entity</span> <span class='rbrace'>}</span>
       <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_address_index_path'>address_index_path</span> <span class='rbrace'>}</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -465,12 +465,12 @@
       <pre class="lines">
 
 
-6
 7
-8</pre>
+8
+9</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/address_controller.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/address_controller.rb', line 7</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
   <span class='ivar'>@address</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Address.html" title="Address (class)">Address</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -558,7 +558,6 @@
       <pre class="lines">
 
 
-16
 17
 18
 19
@@ -568,10 +567,11 @@
 23
 24
 25
-26</pre>
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/address_controller.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/address_controller.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
   <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_extract_value'>extract_value</span><span class='lparen'>(</span><span class='symbol'>:id</span><span class='rparen'>)</span>
@@ -594,7 +594,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri May 16 11:45:22 2025 by
+  Generated on Tue May 20 11:08:06 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.5).
 </div>
