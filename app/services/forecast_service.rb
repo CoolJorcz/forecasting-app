@@ -21,7 +21,19 @@ class ForecastService
   # HTTP Wrapper for Forecast retrieval
   #
   # @return [Hash] forecast Forecast Hash from response body, plus the address id and the initial primary line provided for visibility
-  #
+  # @example {
+  #     current_temperature: 60.9,
+  #     current_time: "2025-05-14T20:45:00Z",
+  #     feels_like: 60.9,
+  #     location: {
+  #       lat: 40.748477935791016,
+  #       lon: -73.99413299560547,
+  #       name: "Manhattan, New York County, City of New York, New York, 10001, United States",
+  #       zip_code: "10001"
+  #     },
+  #     set_at: 2025-05-14T20:45:00Z,
+  #     primary_line: "20 W 34th St."
+  #   }
   def fetch_forecast(retries: 0)
     query_params = provider.query_params
     begin
@@ -56,7 +68,7 @@ class ForecastService
   # Call method and entrypoint to ForecastService
   # Will retrieve from cache by zip code if set in previous 30 minutes. Otherwise, will call Forecast API provider.
   # @param [Address] address instance of Address
-  #
+  # @return [Address#cache_miss] Virtual Attribute to determine the cache result
   # @return [Hash] forecast Hash of Forecast values
   # @example {
   #     current_temperature: 60.9,
@@ -68,6 +80,7 @@ class ForecastService
   #       name: "Manhattan, New York County, City of New York, New York, 10001, United States",
   #       zip_code: "10001"
   #     },
+  #     set_at: 2025-05-14T20:45:00Z,
   #     primary_line: "20 W 34th St."
   #   }
   #
